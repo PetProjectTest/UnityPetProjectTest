@@ -32,8 +32,12 @@ public class ViewController : MonoBehaviour
             {
                 float rotationAroundYAxis = -singleTouch.deltaPosition.x * rotationSpeed;
                 float rotationAroundXAxis = singleTouch.deltaPosition.y * rotationSpeed;
-
-                transform.rotation *= Quaternion.Euler(rotationAroundXAxis, rotationAroundYAxis, 0);
+                // if (rotationAroundXAxis > rotationAroundYAxis) {
+                //     rotationAroundYAxis = 0;
+                // } else {
+                //     rotationAroundXAxis = 0;
+                // }
+                transform.Rotate(new Vector3(0, rotationAroundYAxis, 0));
             }
 
             lastSingleTouchPosition = singleTouch.position;
@@ -66,13 +70,19 @@ public class ViewController : MonoBehaviour
 
         //pc
         // Left Mouse Button for rotation
-        if (Input.GetMouseButton(0))
-        {
-            float horizontal = Input.GetAxis("Mouse X") * rotationSpeed;
-            float vertical = Input.GetAxis("Mouse Y") * rotationSpeed;
-            transform.RotateAround(target.position, Vector3.up, horizontal);
-            transform.RotateAround(target.position, transform.right, -vertical);
-        }
+        // if (Input.GetMouseButton(0))
+        // {
+        //     float horizontal = Input.GetAxis("Mouse X") * rotationSpeed;
+        //     float vertical = Input.GetAxis("Mouse Y") * rotationSpeed;
+        //     //transform.RotateAround(target.position, Vector3.up, horizontal);
+        //     //transform.RotateAround(target.position, transform.right, -vertical);
+        //     // if (vertical > horizontal) {
+        //     //     horizontal = 0;
+        //     // } else {
+        //     //     vertical = 0;
+        //     // }
+        //     transform.Rotate(new Vector3(0, horizontal, 0));
+        // }
 
         // Mouse ScrollWheel for zoom
         float scroll = Input.GetAxis("Mouse ScrollWheel");
